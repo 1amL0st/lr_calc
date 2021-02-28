@@ -6,6 +6,7 @@ type ErrMsg = String;
 #[derive(PartialEq, Debug)]
 pub enum TokenType {
     Number(f64),
+    Power,
     Plus,
     Minus,
     Multiply,
@@ -84,6 +85,7 @@ impl<'a> Ast<'a> {
         let o = match token {
             STokenType::Plus | STokenType::Minus => Some((1, 2)),
             STokenType::Multiplication | STokenType::Division | STokenType::Modulo => Some((3, 4)),
+            STokenType::Power => Some((4, 5)),
             _ => None,
         };
         o
@@ -107,6 +109,7 @@ impl<'a> Ast<'a> {
     fn is_operator(token: STokenType) -> bool {
         match token {
             STokenType::Minus
+            | STokenType::Power
             | STokenType::Modulo
             | STokenType::Plus
             | STokenType::Multiplication
@@ -118,6 +121,7 @@ impl<'a> Ast<'a> {
 
     fn scanner_token_to_ast_token(token: Token<'a>) -> TokenType {
         match token.t {
+            STokenType::Power => TokenType::Power,
             STokenType::Number(number) => TokenType::Number(number),
             STokenType::Plus => TokenType::Plus,
             STokenType::Minus => TokenType::Minus,

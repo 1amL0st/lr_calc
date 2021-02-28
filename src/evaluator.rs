@@ -19,6 +19,11 @@ fn recursion<'a>(node: NodePtr) -> f64 {
                 let right = recursion(ptr.right);
                 (left % right) as f64
             },
+            TokenType::Power => {
+                let base = recursion(ptr.left);
+                let exp = recursion(ptr.right);
+                base.powf(exp)
+            },
             TokenType::PrefixMinus => -recursion(ptr.left),
             TokenType::PrefixPlus => recursion(ptr.left),
             TokenType::Plus => recursion(ptr.left) + recursion(ptr.right),
@@ -130,5 +135,16 @@ mod evaluator_tests {
 
         do_test("(4 + 2) % 3", 0.);
         do_test("(5 + 2) % 9", 7.);
+    }
+
+    #[test]
+    fn exponent_operator_tests() {
+        do_test("4 ^ 2", 16.);
+
+        do_test("0 ^ 2", 0.);
+        do_test("2 ^ 0", 1.);
+        do_test("232 ^ 1", 232.);
+
+        do_test("(2 + 3) ^ 2", 25.);
     }
 }

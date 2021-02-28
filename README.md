@@ -3,7 +3,8 @@
 ## Infix operators: ##
 1. '+', '-', '*', '/' 
 2. '%' modulus
-
+3. '^' power
+ 
 ## Postfix operators: ##
 1. '!' factorial
 
