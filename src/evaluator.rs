@@ -146,5 +146,6 @@ mod evaluator_tests {
         do_test("232 ^ 1", 232.);
 
         do_test("(2 + 3) ^ 2", 25.);
+        do_test("(2 + 3) ^ 2 - (1 + 2) ^ 3", -2.);
     }
 }

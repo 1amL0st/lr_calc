@@ -143,7 +143,6 @@ impl<'a> Ast<'a> {
     }
 
     fn log_error(prev_token: Token<'a>, token: Token<'a>) -> Result<NodePtr, ErrMsg> {
-        println!("prev_token = {:?} token = {:?}", prev_token, token);
         if Ast::is_operator(prev_token.t) && token.t == STokenType::End {
             Err(format!("Operator {:?} at pos {} expects an operand, but gets End!", prev_token.t, prev_token.pos))
         } else if prev_token.t == STokenType::None && token.t == STokenType::End {
@@ -163,7 +162,7 @@ impl<'a> Ast<'a> {
 
                 let next = self.scanner.next();
                 if next.t != STokenType::Rparen {
-                    Err(format!("Expected RParen is not found! LParen pos = {}", token.pos))
+                    Err(format!("LParen at pos = {} doesn't have corresponding RParen!", token.pos))
                 } else {
                     Ok(lhs)
                 }
@@ -173,7 +172,7 @@ impl<'a> Ast<'a> {
 
                 let next = self.scanner.next();
                 if next.t != STokenType::Bar {
-                    Err(format!("Expected Bar is not found! First Bar  pos = {}", token.pos))
+                    Err(format!("Bar at pos = {} odesn't have corresponding RParen", token.pos))
                 } else {
                     Ok(lhs)
                 }
