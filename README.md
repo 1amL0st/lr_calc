@@ -11,4 +11,6 @@
 ## Prefix operators: ##
 1. '-', '+'
 
+Supports "||" and "()"
+
 Enter "q" or "exit" to exit

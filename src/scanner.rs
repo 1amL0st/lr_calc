@@ -1,7 +1,3 @@
-/*
-    1. TODO: Add index to display an error in correct format
-    2. TODO: Maybe you should make parenthesis even test check
-*/
 pub struct Scanner<'a> {
     expr: &'a str,
     iterator: std::iter::Peekable<std::str::CharIndices<'a>>,
